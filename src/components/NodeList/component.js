@@ -28,8 +28,10 @@ export default class NodeList extends PureComponent {
 						>
 							<div className="ph3 pointer">
 								<div className="pv3 bb b--light-gray flex items-center">
-									<div className="h05 w05 bg-red br-pill" />
-									<span className="fw6 ml2 black">
+									{
+										// <div className="h05 w05 bg-red br-pill" />
+									}
+									<span className="fw6 black">
 										Node {node.id}
 									</span>
 								</div>

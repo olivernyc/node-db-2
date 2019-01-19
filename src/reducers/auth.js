@@ -1,4 +1,4 @@
-import { TOKEN_SUCCESS } from "../actions";
+import { TOKEN_SUCCESS, CLEAR_TOKEN } from "../actions";
 
 const reducer = (state = { token: undefined }, action) => {
 	switch (action.type) {
@@ -6,6 +6,11 @@ const reducer = (state = { token: undefined }, action) => {
 			return {
 				...state,
 				token: action.token
+			};
+		case CLEAR_TOKEN:
+			return {
+				...state,
+				token: undefined
 			};
 		default:
 			return state;

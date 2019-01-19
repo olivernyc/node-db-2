@@ -13,7 +13,11 @@ import NodeMap from "./components/NodeMap";
 import Node from "./components/Node";
 
 import rootReducer from "./reducers";
-const persistConfig = { key: "root", storage, blacklist: ["nodes"] };
+const persistConfig = {
+	key: "root",
+	storage,
+	whitelist: ["auth"]
+};
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer);
 const persistor = persistStore(store);

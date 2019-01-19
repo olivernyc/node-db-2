@@ -55,6 +55,7 @@ export default class LoginGate extends PureComponent {
 				const { token } = data;
 				authenticate(token);
 				setToken(token);
+				// TODO: Fetch repo and immediately invalidate token
 			}
 		);
 	}

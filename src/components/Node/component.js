@@ -20,6 +20,16 @@ export default class Node extends PureComponent {
 					<h1 className="mv0 f3">Node {id || match.params.id}</h1>
 					<NodeStatus node={node} />
 				</div>
+				{this.renderInfo()}
+			</div>
+		);
+	}
+
+	renderInfo() {
+		const { node } = this.props;
+		if (!node || !node.coordinates) return null;
+		return (
+			<div>
 				<div className="flex items-center mt3">
 					<span className="w4 db fw6 mr2">Lat</span>
 					<span>{node.coordinates[0]}</span>
