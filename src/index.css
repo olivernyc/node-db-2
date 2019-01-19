@@ -13,10 +13,27 @@ svg {
 		rgba(0, 0, 0, 0.0666) 0px 1px 1px 0px;
 }
 
+.pv05 {
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+}
+
+.h05 {
+	height: 0.5rem;
+}
+
+.w05 {
+	width: 0.5rem;
+}
+
 .h2-5 {
 	height: 3rem;
 }
 
 .w2-5 {
 	width: 3rem;
+}
+
+.mw5-5 {
+	max-width: 24rem;
 }

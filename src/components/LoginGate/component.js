@@ -1,27 +1,61 @@
 import React, { PureComponent } from "react";
+import netlify from "netlify-auth-providers";
+import { authenticate } from "../../api";
 
 export default class LoginGate extends PureComponent {
+	componentDidMount() {
+		const { token } = this.props;
+		if (token) {
+			authenticate(token);
+		}
+	}
+
 	render() {
 		const { token, children } = this.props;
 		if (token) return children;
 		return (
-			<div className="vh-100 pv4 flex flex-column items-center bg-near-white">
+			<div
+				className="vh-100 pv4 flex flex-column items-center sans-serif"
+				style={{ backgroundColor: "rgb(245,247,250)" }}
+			>
 				<div className="br-pill shadow">{this.renderLogo()}</div>
 				<div className="mt5 pa4 bg-white br3 shadow flex flex-column">
-					<div className="bg-dark-gray white pa3 br2 pointer">
+					<button
+						className="bg-dark-gray hover-bg-near-black white pa3 br2 pointer bn"
+						onClick={() => this.authWithGitHub()}
+					>
 						<div className="flex items-center justify-center w5">
 							{this.renderGitHubLogo()}
-							<a
+							<span
 								href="https://github.com/login/oauth/authorize?scope=user:email&client_id=c745fd808d75a8463810"
 								className="ml2 f6 fw5 white link"
 							>
 								Log in with GitHub
-							</a>
+							</span>
 						</div>
-					</div>
+					</button>
 				</div>
 				<div />
 			</div>
+		);
+	}
+
+	authWithGitHub() {
+		const { setToken } = this.props;
+		const authenticator = new netlify({
+			site_id: "determined-darwin-f90a37.netlify.com"
+		});
+		authenticator.authenticate(
+			{ provider: "github", scope: "public_repo" },
+			function(err, data) {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				const { token } = data;
+				authenticate(token);
+				setToken(token);
+			}
 		);
 	}
 

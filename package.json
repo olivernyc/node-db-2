@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@octokit/rest": "^16.9.0",
+    "netlify-auth-providers": "^1.0.0-alpha5",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",

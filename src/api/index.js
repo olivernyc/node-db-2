@@ -7,10 +7,13 @@ const REPO = "node-db-2";
 
 /*
 TODO:
-  * Github auth
   * Editing
   * Writing files
 */
+
+export async function authenticate(token) {
+  octokit.authenticate({ type: "oauth", token });
+}
 
 export async function fetchNodesApi() {
   const headCommit = await octokit.repos.getCommitRefSha({
@@ -32,6 +35,15 @@ export async function fetchNodesApi() {
     url: nodeFile.url
   }));
   return nodes;
+}
+
+export async function fetchNodeApi(node) {
+  const res = await fetch(node.url, {
+    headers: {
+      Accept: "application/vnd.github.VERSION.raw"
+    }
+  });
+  return await res.json();
 }
 
 async function updateNode(node) {

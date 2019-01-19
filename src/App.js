@@ -8,30 +8,38 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import LoginGate from "./components/LoginGate";
 import Nav from "./components/Nav";
-import Dashboard from "./components/Dashboard";
+import NodeList from "./components/NodeList";
+import NodeMap from "./components/NodeMap";
+import Node from "./components/Node";
 
 import rootReducer from "./reducers";
-// const persistConfig = { key: "root", storage };
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(rootReducer);
-// const persistor = persistStore(store);
+const persistConfig = { key: "root", storage, blacklist: ["nodes"] };
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
 
 export default class App extends PureComponent {
 	render() {
 		return (
 			<Provider store={store}>
-				<Router>
-					<div className="sans-serif">
-						<LoginGate>
-							<div className="ph3">
-								<div className="mw9 center">
-									<Nav />
-									<Dashboard />
+				<PersistGate persistor={persistor}>
+					<LoginGate>
+						<Router>
+							<div className="sans-serif">
+								<Route path="/" component={Nav} />
+								<div className="flex">
+									<Route
+										exact
+										path="/"
+										component={NodeList}
+									/>
+									<Route path="/" component={NodeMap} />
+									<Route path="/node/:id" component={Node} />
 								</div>
 							</div>
-						</LoginGate>
-					</div>
-				</Router>
+						</Router>
+					</LoginGate>
+				</PersistGate>
 			</Provider>
 		);
 	}

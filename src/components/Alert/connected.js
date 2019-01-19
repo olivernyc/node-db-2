@@ -1,14 +1,11 @@
 import { connect } from "react-redux";
 import PureComponent from "./component";
-import { setToken } from "../../actions";
 
 const mapStateToProps = (state, ownProps) => ({
-	token: state.auth.token
+	errors: state.errors
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	setToken: token => setToken(token, dispatch)
-});
+const mapDispatchToProps = (dispatch, ownProps) => ({});
 
 export default connect(
 	mapStateToProps,
