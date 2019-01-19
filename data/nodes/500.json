@@ -1,0 +1,14 @@
+{
+  "id": 500,
+  "coordinates": [
+    -73.961391,
+    40.682939,
+    5
+  ],
+  "requestDate": 1489623430974,
+  "roofAccess": false,
+  "panoramas": [
+    "500.jpg",
+    "500a.jpg"
+  ]
+}

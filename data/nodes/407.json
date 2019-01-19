@@ -1,0 +1,20 @@
+{
+  "id": 407,
+  "name": "Henry",
+  "status": "Installed",
+  "coordinates": [
+    -73.9903657,
+    40.7132593,
+    40
+  ],
+  "requestDate": 1473785770087,
+  "installDate": 1510981200000,
+  "roofAccess": true,
+  "notes": "Chinatown Hub",
+  "panoramas": [
+    "407.jpg",
+    "407a.jpg",
+    "407b.jpg",
+    "407c.jpg"
+  ]
+}

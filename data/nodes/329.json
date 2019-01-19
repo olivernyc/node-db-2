@@ -1,0 +1,20 @@
+{
+  "id": 329,
+  "name": "Simona",
+  "status": "Installed",
+  "coordinates": [
+    -73.94197707,
+    40.71748272,
+    26.5
+  ],
+  "requestDate": 1459986259793,
+  "installDate": 1490673600000,
+  "roofAccess": true,
+  "notes": "hub",
+  "panoramas": [
+    "329.jpg",
+    "329a.jpg",
+    "329b.jpg",
+    "329c.jpg"
+  ]
+}

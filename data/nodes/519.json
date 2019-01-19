@@ -1,0 +1,17 @@
+{
+  "id": 519,
+  "status": "Installed",
+  "coordinates": [
+    -118.191265,
+    33.7717084,
+    5
+  ],
+  "requestDate": 1491780110708,
+  "installDate": 1524110400000,
+  "roofAccess": true,
+  "notes": "Kiosk bridge",
+  "panoramas": [
+    "519.jpg",
+    "519a.jpg"
+  ]
+}

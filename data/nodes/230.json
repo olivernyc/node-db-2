@@ -1,0 +1,14 @@
+{
+  "id": 230,
+  "status": "Installed",
+  "coordinates": [
+    -73.986312,
+    40.66042,
+    5
+  ],
+  "requestDate": 1447882073228,
+  "installDate": 1449550800000,
+  "roofAccess": true,
+  "notes": "tree node",
+  "panoramas": []
+}

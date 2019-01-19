@@ -1,0 +1,19 @@
+{
+  "id": 227,
+  "name": "Supernode 1",
+  "status": "Installed",
+  "coordinates": [
+    -74.00127188,
+    40.7111043,
+    180
+  ],
+  "requestDate": 1446989439601,
+  "installDate": 1479445200000,
+  "roofAccess": true,
+  "notes": "Supernode 1, Sector facing North",
+  "panoramas": [
+    "227.jpg",
+    "227a.jpg",
+    "227b.png"
+  ]
+}

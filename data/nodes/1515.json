@@ -1,0 +1,17 @@
+{
+  "id": 1515,
+  "name": "Domino",
+  "status": "Installed",
+  "coordinates": [
+    -73.967361,
+    40.71472,
+    51
+  ],
+  "requestDate": 1520365987283,
+  "installDate": 1521518400000,
+  "roofAccess": true,
+  "notes": "Domino refinery, hub",
+  "panoramas": [
+    "1515.jpg"
+  ]
+}

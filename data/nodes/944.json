@@ -1,0 +1,20 @@
+{
+  "id": 944,
+  "name": "Flo",
+  "status": "Installed",
+  "coordinates": [
+    -73.9547994,
+    40.680215,
+    38
+  ],
+  "requestDate": 1513622781352,
+  "installDate": 1518757200000,
+  "roofAccess": true,
+  "notes": "hub kiosk",
+  "panoramas": [
+    "944.jpg",
+    "944a.jpg",
+    "944b.jpg",
+    "944c.jpg"
+  ]
+}

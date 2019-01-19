@@ -1,0 +1,14 @@
+{
+  "id": 75,
+  "status": "Interested",
+  "coordinates": [
+    -73.9560194,
+    40.7720279,
+    5
+  ],
+  "requestDate": 1433256889710,
+  "roofAccess": true,
+  "panoramas": [
+    "75.jpg"
+  ]
+}

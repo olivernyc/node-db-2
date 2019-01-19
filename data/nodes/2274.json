@@ -1,0 +1,20 @@
+{
+  "id": 2274,
+  "name": "100AVA",
+  "status": "Installed",
+  "coordinates": [
+    -73.983418,
+    40.72575,
+    34
+  ],
+  "requestDate": 1535632167086,
+  "installDate": 1546923600000,
+  "roofAccess": true,
+  "notes": "Hub",
+  "panoramas": [
+    "2274.jpg",
+    "2274a.jpg",
+    "2274b.jpg",
+    "2274c.jpg"
+  ]
+}

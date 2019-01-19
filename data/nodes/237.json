@@ -1,0 +1,16 @@
+{
+  "id": 237,
+  "status": "To be scheduled",
+  "coordinates": [
+    -74.0077324,
+    40.7268675,
+    47
+  ],
+  "requestDate": 1449118800000,
+  "roofAccess": true,
+  "notes": "Possible supernode",
+  "panoramas": [
+    "237.jpg",
+    "237a.jpg"
+  ]
+}

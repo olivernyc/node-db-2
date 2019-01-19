@@ -1,0 +1,17 @@
+{
+  "id": 1567,
+  "name": "Pierre",
+  "status": "Installed",
+  "coordinates": [
+    -73.98643489999999,
+    40.7278197,
+    28
+  ],
+  "requestDate": 1521987815069,
+  "installDate": 1522814400000,
+  "roofAccess": true,
+  "notes": "hub",
+  "panoramas": [
+    "1567.jpg"
+  ]
+}

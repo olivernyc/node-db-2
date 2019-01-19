@@ -1,0 +1,18 @@
+{
+  "id": 1237,
+  "status": "Installed",
+  "coordinates": [
+    -73.9676269,
+    40.799292,
+    5
+  ],
+  "requestDate": 1515717260592,
+  "installDate": 1515733200000,
+  "roofAccess": true,
+  "notes": "kiosk bridge",
+  "panoramas": [
+    "1237.jpg",
+    "1237a.jpg",
+    "1237b.jpg"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 731,
+  "name": "7th St.",
+  "status": "Installed",
+  "coordinates": [
+    -73.98073040000001,
+    40.72467630000001,
+    33
+  ],
+  "requestDate": 1512972311086,
+  "installDate": 1536292800000,
+  "roofAccess": true,
+  "notes": "Alphabet City hub",
+  "panoramas": []
+}

@@ -1,0 +1,13 @@
+{
+  "id": 23,
+  "status": "To be scheduled",
+  "coordinates": [
+    -73.9412728,
+    40.7233599,
+    5
+  ],
+  "requestDate": 1429806106887,
+  "installDate": 1449637200000,
+  "roofAccess": true,
+  "panoramas": []
+}

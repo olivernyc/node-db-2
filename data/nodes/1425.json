@@ -1,0 +1,16 @@
+{
+  "id": 1425,
+  "status": "Installed",
+  "coordinates": [
+    -74.000748,
+    40.655059,
+    5
+  ],
+  "requestDate": 1518194482078,
+  "installDate": 1519966800000,
+  "roofAccess": true,
+  "notes": "NSM5 window",
+  "panoramas": [
+    "1425.jpg"
+  ]
+}

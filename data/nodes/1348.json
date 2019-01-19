@@ -1,0 +1,20 @@
+{
+  "id": 1348,
+  "name": "Supernode 4",
+  "status": "Installed",
+  "coordinates": [
+    -73.96078949999999,
+    40.6706856,
+    67
+  ],
+  "requestDate": 1516832404663,
+  "installDate": 1540008000000,
+  "roofAccess": true,
+  "notes": "Supernode 4, St. Francis de Sales School for the Deaf",
+  "panoramas": [
+    "1348.jpg",
+    "1348a.jpg",
+    "1348b.jpg",
+    "1348c.jpg"
+  ]
+}

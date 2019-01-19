@@ -1,0 +1,16 @@
+{
+  "id": 1430,
+  "status": "Installed",
+  "coordinates": [
+    -73.987055,
+    40.721199,
+    25
+  ],
+  "requestDate": 1518359374844,
+  "installDate": 1541566800000,
+  "roofAccess": false,
+  "notes": "Litebeam to Rivington",
+  "panoramas": [
+    "1430.jpg"
+  ]
+}

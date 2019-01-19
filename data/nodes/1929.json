@@ -1,0 +1,16 @@
+{
+  "id": 1929,
+  "status": "Installed",
+  "coordinates": [
+    -74.0098265,
+    41.5031508,
+    5
+  ],
+  "requestDate": 1528816671545,
+  "installDate": 1528776000000,
+  "roofAccess": false,
+  "notes": "NanoStation facing park",
+  "panoramas": [
+    "1929.jpg"
+  ]
+}

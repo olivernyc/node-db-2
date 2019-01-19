@@ -1,0 +1,18 @@
+{
+  "id": 1660,
+  "status": "Installed",
+  "coordinates": [
+    -73.9830259,
+    40.7244688,
+    20
+  ],
+  "requestDate": 1524580245268,
+  "installDate": 1527998400000,
+  "roofAccess": true,
+  "notes": "connected to prism2",
+  "panoramas": [
+    "1660.jpg",
+    "1660a.jpg",
+    "1660b.jpg"
+  ]
+}

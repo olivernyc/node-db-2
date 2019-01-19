@@ -1,0 +1,15 @@
+{
+  "id": 2192,
+  "status": "Installed",
+  "coordinates": [
+    -73.911981,
+    40.70649,
+    36
+  ],
+  "requestDate": 1535402468216,
+  "installDate": 1538625600000,
+  "roofAccess": true,
+  "panoramas": [
+    "2192.jpg"
+  ]
+}

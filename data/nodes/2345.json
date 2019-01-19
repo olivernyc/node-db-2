@@ -1,0 +1,13 @@
+{
+  "id": 2345,
+  "coordinates": [
+    -73.9446547,
+    40.779684,
+    5
+  ],
+  "requestDate": 1536258841840,
+  "roofAccess": false,
+  "panoramas": [
+    "2345.jpg"
+  ]
+}
