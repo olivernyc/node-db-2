@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import auth from "./auth";
 import nodes from "./nodes";
-import nodesById from "./nodesById";
+import links from "./links";
+import filters from "./filters";
 import errors from "./errors";
 
 export default combineReducers({
 	auth,
 	nodes,
-	nodesById,
+	links,
+	filters,
 	errors
 });

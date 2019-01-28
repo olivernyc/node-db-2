@@ -8,44 +8,37 @@ const REPO = "node-db-2";
 /*
 TODO:
   * Editing
-  * Writing files
 */
+
+export async function fetchNodesApi() {
+  return await fetchFile("data/nodes.json");
+}
+
+export async function fetchLinksApi() {
+  return await fetchFile("data/links.json");
+}
+
+export async function fetchFile(path) {
+  const contents = await octokit.repos.getContents({
+    owner: OWNER,
+    repo: REPO,
+    path
+  });
+  return JSON.parse(atob(contents.data.content));
+}
 
 export async function authenticate(token) {
   octokit.authenticate({ type: "oauth", token });
 }
 
-export async function fetchNodesApi() {
-  const headCommit = await octokit.repos.getCommitRefSha({
+export async function writeNodesApi(node, nodeFile) {
+  console.log(node, nodeFile);
+  const result = await octokit.repos.updateFile({
     owner: OWNER,
     repo: REPO,
-    ref: "master"
+    path: `data/nodes/${node.id}.json`,
+    message: `update node ${node.id}`,
+    content: btoa(JSON.stringify(node, null, 2) + "\n"),
+    sha: nodeFile.sha
   });
-  const { sha } = headCommit.data;
-  const treeRes = await octokit.git.getTree({
-    owner: OWNER,
-    repo: REPO,
-    tree_sha: sha,
-    recursive: 1
-  });
-  const { tree } = treeRes.data;
-  const nodeFiles = tree.filter(file => file.path.indexOf("data/nodes/") === 0);
-  const nodes = nodeFiles.map(nodeFile => ({
-    id: nodeFile.path.match(/\/(\d*).json/)[1],
-    url: nodeFile.url
-  }));
-  return nodes;
-}
-
-export async function fetchNodeApi(node) {
-  const res = await fetch(node.url, {
-    headers: {
-      Accept: "application/vnd.github.VERSION.raw"
-    }
-  });
-  return await res.json();
-}
-
-async function updateNode(node) {
-  // Commit file
 }

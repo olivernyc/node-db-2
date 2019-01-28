@@ -7,6 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import LoginGate from "./components/LoginGate";
+import Alert from "./components/Alert";
 import Nav from "./components/Nav";
 import NodeList from "./components/NodeList";
 import NodeMap from "./components/NodeMap";
@@ -30,6 +31,7 @@ export default class App extends PureComponent {
 					<LoginGate>
 						<Router>
 							<div className="sans-serif">
+								<Alert />
 								<Route path="/" component={Nav} />
 								<div className="flex">
 									<Route
@@ -37,7 +39,12 @@ export default class App extends PureComponent {
 										path="/"
 										component={NodeList}
 									/>
-									<Route path="/" component={NodeMap} />
+									<Route
+										path="/node/:nodeId"
+										children={({ match }) => (
+											<NodeMap match={match} />
+										)}
+									/>
 									<Route path="/node/:id" component={Node} />
 								</div>
 							</div>

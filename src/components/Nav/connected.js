@@ -5,4 +5,7 @@ const mapStateToProps = (state, ownProps) => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PureComponent);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(PureComponent);

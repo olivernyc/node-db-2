@@ -1,8 +1,20 @@
 import { connect } from "react-redux";
-import PureComponent from "./component";
+import PureMapView from "./component";
+import { fetchData } from "../../actions";
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({
+	nodes: Object.values(state.nodes),
+	nodesById: state.nodes,
+	links: state.links,
+	kiosks: state.kiosks,
+	filters: state.filters
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	fetchData: () => fetchData(dispatch)
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PureComponent);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(PureMapView);
