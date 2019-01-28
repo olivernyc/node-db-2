@@ -101,7 +101,10 @@ export default class Node extends PureComponent {
 											</span>
 											<span className="db f7 gray">
 												{format(
-													connectedNode.installDate,
+													Math.max(
+														connectedNode.installDate,
+														node.installDate
+													),
 													"MMM D, YYYY"
 												)}
 											</span>
