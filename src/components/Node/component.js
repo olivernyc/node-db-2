@@ -74,7 +74,14 @@ export default class Node extends PureComponent {
 						? node.connectedNodes
 								.filter(
 									connectedNode =>
-										connectedNode.status === "active"
+										connectedNode.status === "active" &&
+										connectedNode.links &&
+										connectedNode.links.filter(
+											link =>
+												link.status === "active" &&
+												(link.fromNode.id === node.id ||
+													link.toNode.id === node.id)
+										).length
 								)
 								.sort(
 									(a, b) =>
