@@ -14,6 +14,7 @@ import NodeList from "./components/NodeList";
 import NodeMap from "./components/NodeMap";
 import Node from "./components/Node";
 import Gallery from "./components/Gallery";
+import ScrollToTop from "./components/ScrollToTop";
 
 import rootReducer from "./reducers";
 const persistConfig = {
@@ -32,32 +33,34 @@ export default class App extends PureComponent {
 				<PersistGate persistor={persistor}>
 					<LoginGate>
 						<Router>
-							<div className="sans-serif">
-								<Alert />
-								<Route path="/" component={Nav} />
-								<Route path="/" component={Filters} />
-								<div className="flex">
+							<ScrollToTop>
+								<div className="sans-serif">
+									<Alert />
+									<Route path="/" component={Nav} />
+									<Route path="/" component={Filters} />
+									<div className="flex">
+										<Route
+											exact
+											path="/"
+											component={NodeList}
+										/>
+										<Route
+											path="/node/:nodeId"
+											children={({ match }) => (
+												<NodeMap match={match} />
+											)}
+										/>
+										<Route
+											path="/node/:nodeId"
+											component={Node}
+										/>
+									</div>
 									<Route
-										exact
-										path="/"
-										component={NodeList}
-									/>
-									<Route
-										path="/node/:nodeId"
-										children={({ match }) => (
-											<NodeMap match={match} />
-										)}
-									/>
-									<Route
-										path="/node/:nodeId"
-										component={Node}
+										path="/node/:nodeId/panoramas/:panoId"
+										component={Gallery}
 									/>
 								</div>
-								<Route
-									path="/node/:nodeId/panoramas/:panoId"
-									component={Gallery}
-								/>
-							</div>
+							</ScrollToTop>
 						</Router>
 					</LoginGate>
 				</PersistGate>
