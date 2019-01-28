@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginGate from "./components/LoginGate";
 import Alert from "./components/Alert";
 import Nav from "./components/Nav";
+import Filters from "./components/Filters";
 import NodeList from "./components/NodeList";
 import NodeMap from "./components/NodeMap";
 import Node from "./components/Node";
@@ -34,6 +35,7 @@ export default class App extends PureComponent {
 							<div className="sans-serif">
 								<Alert />
 								<Route path="/" component={Nav} />
+								<Route path="/" component={Filters} />
 								<div className="flex">
 									<Route
 										exact

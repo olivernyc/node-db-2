@@ -18,8 +18,6 @@ export default class Gallery extends PureComponent {
 	}
 
 	handleKeyDown(event) {
-		event.preventDefault();
-		event.stopPropagation();
 		const { keyCode } = event;
 		const { node, match } = this.props;
 		if (!node) return;
@@ -29,6 +27,7 @@ export default class Gallery extends PureComponent {
 		const panoIdInt = parseInt(panoId);
 		if (keyCode === 27) {
 			history.push(`/node/${nodeId}`);
+			event.stopPropagation();
 		} else if (keyCode === 39) {
 			const nextPanoId = panoIdInt < panoramas.length ? panoIdInt + 1 : 1;
 			history.push(`/node/${nodeId}/panoramas/${nextPanoId}`);

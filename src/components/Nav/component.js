@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 export default class Nav extends PureComponent {
 	render() {
 		return (
-			<div style={{ height: "65px" }}>
-				<div className="fixed bg-white w-100 ph3">
-					<div className="flex items-center bb b--light-gray pv3">
+			<div style={{ height: "68px" }}>
+				<div className="fixed bg-near-white w-100 ph3">
+					<div className="flex items-center pv3">
 						<Link
 							to="/"
 							className="flex items-center link near-black"
@@ -39,8 +39,29 @@ export default class Nav extends PureComponent {
 									/>
 								</g>
 							</svg>
-							<span className="f5 fw6 ml2">NYC Mesh</span>
+							<span className="f5 fw6 ml2 nowrap">NYC Mesh</span>
 						</Link>
+						<div className="ml4 shadow bg-white br2 ba b--light-gray overflow-hidden flex items-center w-100 mw6">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								className="gray ml2"
+							>
+								<circle cx="11" cy="11" r="8" />
+								<line x1="21" y1="21" x2="16.65" y2="16.65" />
+							</svg>
+							<input
+								className="bn pa2 w-100"
+								style={{ outline: "none" }}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

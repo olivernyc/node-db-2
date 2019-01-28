@@ -159,7 +159,7 @@ class NodeMap extends Component {
 			<div
 				style={{
 					left,
-					top: "65px"
+					top: "68px"
 				}}
 				className="fixed pv3 pr3 flex right-0 bottom-0"
 			>
@@ -321,8 +321,10 @@ class NodeMap extends Component {
 			// Highlight directly connected nodes
 			selectedNodes.forEach(node => {
 				if (node.connectedNodes) {
-					node.connectedNodes.forEach(nodeId => {
-						const connectedMarker = this.markerRefs[nodeId];
+					node.connectedNodes.forEach(connectedNode => {
+						const connectedMarker = this.markerRefs[
+							connectedNode.id
+						];
 						if (connectedMarker) {
 							connectedMarker.setVisibility("secondary");
 						}

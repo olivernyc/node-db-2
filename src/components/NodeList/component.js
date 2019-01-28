@@ -6,13 +6,7 @@ import NodeName from "../NodeName";
 export default class NodeList extends PureComponent {
 	render() {
 		return (
-			<div className="mw5-5 w-100">
-				<div className="pa3 flex">
-					<input
-						className="w-100 br2 pa2 bn bg-near-white"
-						placeholder="Search"
-					/>
-				</div>
+			<div className="mw5-5 w-100 pv2">
 				{this.renderList()}
 				{this.renderEmpty()}
 			</div>
@@ -31,8 +25,8 @@ export default class NodeList extends PureComponent {
 						to={`/node/${node.id}`}
 						className="link no-underline db"
 					>
-						<div className="ph3 pointer">
-							<div className="pv3 black bb b--light-gray flex items-center">
+						<div className="ph3 pointer mv2">
+							<div className="pv3 pl2 pr3 bg-white br1 shadow black">
 								<NodeName node={node} />
 							</div>
 						</div>
@@ -45,7 +39,7 @@ export default class NodeList extends PureComponent {
 		const { nodes } = this.props;
 		if (!Object.values(nodes).length) {
 			return (
-				<div className="pa3 flex justify-center">
+				<div className="pa3 mv3 flex justify-center">
 					<svg
 						version="1.1"
 						xmlns="http://www.w3.org/2000/svg"

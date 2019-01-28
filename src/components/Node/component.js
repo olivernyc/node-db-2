@@ -6,12 +6,7 @@ import NodeName from "../NodeName";
 
 export default class Node extends PureComponent {
 	render() {
-		return (
-			<div className="pa3 w-100 mw7">
-				{this.renderBar()}
-				{this.renderInfo()}
-			</div>
-		);
+		return <div className="pa3 w-100 mw7">{this.renderInfo()}</div>;
 	}
 
 	renderBar() {
@@ -39,21 +34,105 @@ export default class Node extends PureComponent {
 
 	renderInfo() {
 		const { node, match } = this.props;
-		if (!node || !node.coordinates) return null;
+		if (!node) return null;
 		return (
 			<div>
-				<h1 className="mv0 fw7 f3 f3">
-					{node.name
-						? node.name
-						: `Node ${node.id || match.params.id}`}
-				</h1>
+				<div className="pa3 bg-white br2 shadow">
+					<h1 className="mv0 f4 fw5">
+						{node.name
+							? node.name
+							: `Node ${node.id || match.params.id}`}
+					</h1>
+				</div>
 
 				{this.renderPhotos()}
 
-				<div className="flex-ns">
-					{this.renderDevices()}
-					{this.renderLinks()}
+				{this.renderDevices()}
+				{this.renderLinks()}
+
+				{this.renderLog()}
+			</div>
+		);
+	}
+
+	renderLog() {
+		const { node } = this.props;
+		if (!node) return null;
+		const { links } = node;
+		const firstLinkNode = links
+			? links[0].toNode.id === node.id
+				? links[0].fromNode
+				: links[0].toNode
+			: null;
+		return (
+			<div className="mt3 bb b--light-gray bg-white br2 shadow">
+				<div className="pa3">
+					<span className="f5 fw5">Activity</span>
 				</div>
+				<div className="">
+					{node.installDate && node.connectedNodes
+						? node.connectedNodes
+								.filter(
+									connectedNode =>
+										connectedNode.status === "active"
+								)
+								.sort(
+									(a, b) =>
+										new Date(b.installDate) -
+										new Date(a.installDate)
+								)
+								.map(connectedNode => (
+									<div className="pa3 bt b--light-gray flex items-start">
+										<span className="mr2 mt1 f7">🔗</span>
+										<div>
+											<span className="db f6 mb1">
+												Connected to{" "}
+												<Link
+													to={`/node/${
+														connectedNode.id
+													}`}
+													className="blue fw5 link"
+												>
+													{connectedNode.name ||
+														`Node ${
+															connectedNode.id
+														}`}
+												</Link>
+											</span>
+											<span className="db f7 gray">
+												{format(
+													connectedNode.installDate,
+													"MMM D, YYYY"
+												)}
+											</span>
+										</div>
+									</div>
+								))
+						: null}
+
+					<div className="pa3 bt b--light-gray flex items-start">
+						<span className="mr2 mt1 f7">🎉</span>
+						<div>
+							<span className="db f6 mb1">Joined</span>
+							<span className="db f7 gray">
+								{format(
+									node.requestDate,
+									"MMM D, YYYY, H:MM A"
+								)}
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	renderNotes() {
+		const { node } = this.props;
+		if (!node || !node.notes) return null;
+		return (
+			<div className="pv3">
+				<span className="db gray">{node.notes}</span>
 			</div>
 		);
 	}
@@ -63,9 +142,9 @@ export default class Node extends PureComponent {
 		if (!node) return null;
 		const { devices = [] } = node;
 		return (
-			<div className="w-100 mv3 pr3-ns">
-				<div className="flex items-center justify-between bb b--light-gray pv3">
-					<h2 className="f5 fw6 mv0">Devices</h2>
+			<div className="w-100 mv3 bg-white br2 shadow">
+				<div className="pa3 flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 fw5 mv0">Sectors</h2>
 					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
 						<div className="flex items-center">
 							<svg
@@ -82,31 +161,35 @@ export default class Node extends PureComponent {
 								<line x1="12" y1="5" x2="12" y2="19" />
 								<line x1="5" y1="12" x2="19" y2="12" />
 							</svg>
-							<span className="ml2">Add device</span>
+							<span className="ml2">Add sector</span>
 						</div>
 					</button>
 				</div>
 				{devices.map(device => (
-					<div className="bb b--light-gray pv3">
-						<div className="flex items-end mb1">
-							<span className="db fw5">
-								{device.device || "Unknown Device"}
+					<div className="bb b--light-gray pa3 flex items-center pointer">
+						<div className="w-30">
+							<span className="db fw5 mb1">
+								{device.device || "Device"}
 							</span>
+							<span className="db gray f7">
+								{device.width}°
+								{device.width !== 360
+									? ` ${getCardinal(device.azimuth)}`
+									: null}
+								{", "}
+								{device.radius}{" "}
+								{device.radius === 1 ? "Mile" : "Miles"}
+							</span>
+						</div>
+						<div className="w-20 flex">
 							<Status status={device.status} />
 						</div>
-						<span className="db gray">
-							{device.width}°
-							{device.width !== 360
-								? ` ${getCardinal(device.azimuth)}`
-								: null}
-							{", "}
-							{device.radius} Miles
-						</span>
+						<span className="f6">10.70.165.131</span>
 					</div>
 				))}
 				{devices.length ? null : (
-					<div className="tc mv3">
-						<span className="gray f6">No devices</span>
+					<div className="tc pv3">
+						<span className="gray f6 db">No devices</span>
 					</div>
 				)}
 			</div>
@@ -118,9 +201,9 @@ export default class Node extends PureComponent {
 		if (!node) return null;
 		const { links = [] } = node;
 		return (
-			<div className="w-100 mv3 pl3-ns">
-				<div className="flex items-center justify-between bb b--light-gray pv3">
-					<h2 className="f5 fw6 mv0">Links</h2>
+			<div className="w-100 mv3 bg-white shadow br2">
+				<div className="pa3 flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 fw5 mv0 db">Links</h2>
 					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
 						<div className="flex items-center">
 							<svg
@@ -179,7 +262,7 @@ export default class Node extends PureComponent {
 								: link.fromNode;
 						return (
 							<Link to={`/node/${otherNode.id}`} className="link">
-								<div className="bb b--light-gray pv3 black">
+								<div className="bb b--light-gray pv3 pl2 pr3 black">
 									<NodeName node={otherNode} />
 								</div>
 							</Link>
@@ -187,8 +270,8 @@ export default class Node extends PureComponent {
 					})}
 				{links.filter(link => link.status === "active")
 					.length ? null : (
-					<div className="tc mv3">
-						<span className="gray f6">No links</span>
+					<div className="tc pv3">
+						<span className="gray f6 db">No links</span>
 					</div>
 				)}
 			</div>
@@ -200,9 +283,9 @@ export default class Node extends PureComponent {
 		if (!node) return null;
 		const { panoramas = [] } = node;
 		return (
-			<div className="mv3">
-				<div className="flex items-center justify-between bb b--light-gray pv3">
-					<h2 className="f5 fw6 mv0">Photos</h2>
+			<div className="mv3 bg-white br2 shadow">
+				<div className="pa3 flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 fw5 mv0">Photos</h2>
 					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
 						<div className="flex items-center">
 							<svg
@@ -223,24 +306,25 @@ export default class Node extends PureComponent {
 						</div>
 					</button>
 				</div>
-				<div className="flex mhn1">
-					{node.panoramas.slice(0, 4).map((panorama, index) => (
-						<Link
-							to={`/node/${node.id}/panoramas/${index + 1}`}
-							className="h4 w-100 mh1 db"
-						>
-							<div
-								className="h-100 w-100 bg-center cover"
-								style={{
-									backgroundImage: `url('https://node-db.netlify.com/panoramas/${panorama}')`
-								}}
-							/>
-						</Link>
-					))}
-				</div>
-				{panoramas.length ? null : (
-					<div className="tc mv3">
-						<span className="gray f6">No photos</span>
+				{node.panoramas && node.panoramas.length ? (
+					<div className="flex mhn1 pa3">
+						{node.panoramas.slice(0, 4).map((panorama, index) => (
+							<Link
+								to={`/node/${node.id}/panoramas/${index + 1}`}
+								className="h4 w-100 mh1 db"
+							>
+								<div
+									className="h-100 w-100 bg-center cover"
+									style={{
+										backgroundImage: `url('https://node-db.netlify.com/panoramas/${panorama}')`
+									}}
+								/>
+							</Link>
+						))}
+					</div>
+				) : (
+					<div className="tc pv3">
+						<span className="gray f6 db">No photos</span>
 					</div>
 				)}
 			</div>

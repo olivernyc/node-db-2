@@ -37,13 +37,13 @@ export async function fetchData(dispatch) {
 			if (!link.fromNode || !link.toNode) return;
 
 			if (link.from === parseInt(node.id, 10)) {
-				connectedNodes.push(link.to);
+				connectedNodes.push(link.toNode);
 				node.links = node.links || [];
 				node.links.push(link);
 			}
 
 			if (link.to === parseInt(node.id, 10)) {
-				connectedNodes.push(link.from);
+				connectedNodes.push(link.fromNode);
 				node.links = node.links || [];
 				node.links.push(link);
 			}

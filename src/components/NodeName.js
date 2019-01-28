@@ -119,7 +119,7 @@ export default class NodeName extends PureComponent {
 					{icons[node.type]}
 				</div>
 				<div className="pl1 flex-1 truncate">
-					<span className="db f5 fw6 black mv0">
+					<span className="db f5 fw5 black mv0">
 						<Highlighter
 							highlightClassName="bg-light-yellow"
 							searchWords={[search]}
