@@ -48,12 +48,6 @@ export default class Node extends PureComponent {
 						: `Node ${node.id || match.params.id}`}
 				</h1>
 
-				{node.notes ? (
-					<div className="mv3 gray">
-						<span>{node.notes}</span>
-					</div>
-				) : null}
-
 				{this.renderPhotos()}
 
 				<div className="flex-ns">
@@ -71,7 +65,7 @@ export default class Node extends PureComponent {
 		return (
 			<div className="w-100 mv3 pr3-ns">
 				<div className="flex items-center justify-between bb b--light-gray pv3">
-					<h2 className="f5 mv0">Devices</h2>
+					<h2 className="f5 fw6 mv0">Devices</h2>
 					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
 						<div className="flex items-center">
 							<svg
@@ -111,7 +105,9 @@ export default class Node extends PureComponent {
 					</div>
 				))}
 				{devices.length ? null : (
-					<span className="mv3 gray center db">No devices</span>
+					<div className="tc mv3">
+						<span className="gray f6">No devices</span>
+					</div>
 				)}
 			</div>
 		);
@@ -124,7 +120,7 @@ export default class Node extends PureComponent {
 		return (
 			<div className="w-100 mv3 pl3-ns">
 				<div className="flex items-center justify-between bb b--light-gray pv3">
-					<h2 className="f5 mv0">Links</h2>
+					<h2 className="f5 fw6 mv0">Links</h2>
 					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
 						<div className="flex items-center">
 							<svg
@@ -189,8 +185,11 @@ export default class Node extends PureComponent {
 							</Link>
 						);
 					})}
-				{links.length ? null : (
-					<span className="mv3 gray center db">No links</span>
+				{links.filter(link => link.status === "active")
+					.length ? null : (
+					<div className="tc mv3">
+						<span className="gray f6">No links</span>
+					</div>
 				)}
 			</div>
 		);
@@ -198,9 +197,32 @@ export default class Node extends PureComponent {
 
 	renderPhotos() {
 		const { node, match } = this.props;
-		if (!node || !node.panoramas) return null;
+		if (!node) return null;
+		const { panoramas = [] } = node;
 		return (
 			<div className="mv3">
+				<div className="flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 fw6 mv0">Photos</h2>
+					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
+						<div className="flex items-center">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<line x1="12" y1="5" x2="12" y2="19" />
+								<line x1="5" y1="12" x2="19" y2="12" />
+							</svg>
+							<span className="ml2">Add photo</span>
+						</div>
+					</button>
+				</div>
 				<div className="flex mhn1">
 					{node.panoramas.slice(0, 4).map((panorama, index) => (
 						<Link
@@ -216,6 +238,11 @@ export default class Node extends PureComponent {
 						</Link>
 					))}
 				</div>
+				{panoramas.length ? null : (
+					<div className="tc mv3">
+						<span className="gray f6">No photos</span>
+					</div>
+				)}
 			</div>
 		);
 	}
