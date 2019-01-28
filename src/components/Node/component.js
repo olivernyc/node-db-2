@@ -33,12 +33,6 @@ export default class Node extends PureComponent {
 					</svg>
 					<span className="ml1">Nodes</span>
 				</Link>
-				<button
-					className="bn pa0 bg-transparent blue fw5"
-					onClick={() => this.saveNode()}
-				>
-					Save
-				</button>
 			</div>
 		);
 	}
@@ -62,7 +56,7 @@ export default class Node extends PureComponent {
 
 				{this.renderPhotos()}
 
-				<div className="flex pv3">
+				<div className="flex-ns">
 					{this.renderDevices()}
 					{this.renderLinks()}
 				</div>
@@ -73,11 +67,31 @@ export default class Node extends PureComponent {
 	renderDevices() {
 		const { node } = this.props;
 		if (!node) return null;
-		const { devices } = node;
-		if (!devices) return <div className="w-100" />;
+		const { devices = [] } = node;
 		return (
-			<div className="w-100 pr3">
-				<h2 className="f5 mv0">Devices</h2>
+			<div className="w-100 mv3 pr3-ns">
+				<div className="flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 mv0">Devices</h2>
+					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
+						<div className="flex items-center">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<line x1="12" y1="5" x2="12" y2="19" />
+								<line x1="5" y1="12" x2="19" y2="12" />
+							</svg>
+							<span className="ml2">Add device</span>
+						</div>
+					</button>
+				</div>
 				{devices.map(device => (
 					<div className="bb b--light-gray pv3">
 						<div className="flex items-end mb1">
@@ -96,6 +110,9 @@ export default class Node extends PureComponent {
 						</span>
 					</div>
 				))}
+				{devices.length ? null : (
+					<span className="mv3 gray center db">No devices</span>
+				)}
 			</div>
 		);
 	}
@@ -103,11 +120,31 @@ export default class Node extends PureComponent {
 	renderLinks() {
 		const { node } = this.props;
 		if (!node) return null;
-		const { links } = node;
-		if (!links) return <div className="w-100" />;
+		const { links = [] } = node;
 		return (
-			<div className="w-100 pl3">
-				<h2 className="f5 mv0">Connected To</h2>
+			<div className="w-100 mv3 pl3-ns">
+				<div className="flex items-center justify-between bb b--light-gray pv3">
+					<h2 className="f5 mv0">Links</h2>
+					<button className="pa2 f6 fw5 shadow ba b--light-gray br2 bg-white pointer dark-gray">
+						<div className="flex items-center">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<line x1="12" y1="5" x2="12" y2="19" />
+								<line x1="5" y1="12" x2="19" y2="12" />
+							</svg>
+							<span className="ml2">Add link</span>
+						</div>
+					</button>
+				</div>
 				{links
 					.filter(link => link.status === "active")
 					.sort((linkA, linkB) => {
@@ -152,6 +189,9 @@ export default class Node extends PureComponent {
 							</Link>
 						);
 					})}
+				{links.length ? null : (
+					<span className="mv3 gray center db">No links</span>
+				)}
 			</div>
 		);
 	}
