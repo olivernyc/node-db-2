@@ -166,7 +166,7 @@ export default class Node extends PureComponent {
 		const { node, match } = this.props;
 		if (!node || !node.panoramas) return null;
 		return (
-			<div className="mv3 bt b--light-gray">
+			<div className="mv3">
 				<div className="flex mhn1">
 					{node.panoramas.slice(0, 4).map(panorama => (
 						<div
