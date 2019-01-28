@@ -116,6 +116,7 @@ export default class Node extends PureComponent {
 			<div className="w-100 pl3">
 				<h2 className="f5 mv0">Connected To</h2>
 				{links
+					.filter(link => link.status === "active")
 					.sort((linkA, linkB) => {
 						const a =
 							linkA.fromNode.id === node.id
