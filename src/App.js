@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import NodeList from "./components/NodeList";
 import NodeMap from "./components/NodeMap";
 import Node from "./components/Node";
+import Gallery from "./components/Gallery";
 
 import rootReducer from "./reducers";
 const persistConfig = {
@@ -45,8 +46,15 @@ export default class App extends PureComponent {
 											<NodeMap match={match} />
 										)}
 									/>
-									<Route path="/node/:id" component={Node} />
+									<Route
+										path="/node/:nodeId"
+										component={Node}
+									/>
 								</div>
+								<Route
+									path="/node/:nodeId/panoramas/:panoId"
+									component={Gallery}
+								/>
 							</div>
 						</Router>
 					</LoginGate>

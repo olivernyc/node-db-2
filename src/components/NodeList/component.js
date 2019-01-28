@@ -20,9 +20,10 @@ export default class NodeList extends PureComponent {
 	}
 
 	renderList() {
-		const { nodes } = this.props;
+		const { nodes, filters } = this.props;
 		if (!nodes) return null;
 		return Object.values(nodes)
+			.filter(node => filters[node.type] !== false)
 			.sort((a, b) => b.id - a.id)
 			.map(node => (
 				<div key={node.id}>

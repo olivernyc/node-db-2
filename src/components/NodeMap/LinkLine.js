@@ -63,18 +63,16 @@ export default class LinkLine extends PureComponent {
 		const { link } = this.props;
 		const { status } = link;
 
-		const defaultOpacity = 1;
-
 		if (status === "active")
 			return {
 				strokeColor: "#007aff",
-				strokeOpacity: defaultOpacity,
+				strokeOpacity: 1,
 				zIndex: 10
 			};
 
 		return {
 			strokeColor: "#aaa",
-			strokeOpacity: defaultOpacity,
+			strokeOpacity: 0.75,
 			zIndex: 0
 		};
 	}

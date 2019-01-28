@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
-import NodeStatus from "../NodeStatus";
+import Status from "../Status";
 import NodeName from "../NodeName";
 
 export default class Node extends PureComponent {
@@ -48,22 +48,19 @@ export default class Node extends PureComponent {
 		if (!node || !node.coordinates) return null;
 		return (
 			<div>
-				<div className="flex items-end">
-					<h1 className="mv0 fw7 f3 f3">
-						{node.name
-							? node.name
-							: `Node ${node.id || match.params.id}`}
-					</h1>
-					<NodeStatus node={node} />
-				</div>
-
-				{this.renderPhotos()}
+				<h1 className="mv0 fw7 f3 f3">
+					{node.name
+						? node.name
+						: `Node ${node.id || match.params.id}`}
+				</h1>
 
 				{node.notes ? (
-					<div className="mb3 pa3 bg-washed-yellow ba b--light-gray">
+					<div className="mv3 gray">
 						<span>{node.notes}</span>
 					</div>
 				) : null}
+
+				{this.renderPhotos()}
 
 				<div className="flex pv3">
 					{this.renderDevices()}
@@ -76,23 +73,18 @@ export default class Node extends PureComponent {
 	renderDevices() {
 		const { node } = this.props;
 		if (!node) return null;
-		const { devices = [] } = node;
+		const { devices } = node;
+		if (!devices) return <div className="w-100" />;
 		return (
 			<div className="w-100 pr3">
 				<h2 className="f5 mv0">Devices</h2>
 				{devices.map(device => (
 					<div className="bb b--light-gray pv3">
-						<div className="flex items-center mb1">
-							<div
-								className={`h05 w05 br-pill mr2 ${
-									device.status === "active"
-										? "bg-red"
-										: "bg-gray"
-								}`}
-							/>
+						<div className="flex items-end mb1">
 							<span className="db fw5">
 								{device.device || "Unknown Device"}
 							</span>
+							<Status status={device.status} />
 						</div>
 						<span className="db gray">
 							{device.width}°
@@ -111,7 +103,8 @@ export default class Node extends PureComponent {
 	renderLinks() {
 		const { node } = this.props;
 		if (!node) return null;
-		const { links = [] } = node;
+		const { links } = node;
+		if (!links) return <div className="w-100" />;
 		return (
 			<div className="w-100 pl3">
 				<h2 className="f5 mv0">Connected To</h2>
@@ -169,13 +162,18 @@ export default class Node extends PureComponent {
 		return (
 			<div className="mv3">
 				<div className="flex mhn1">
-					{node.panoramas.slice(0, 4).map(panorama => (
-						<div
-							className="h4 w-100 bg-center cover mh1"
-							style={{
-								backgroundImage: `url('https://node-db.netlify.com/panoramas/${panorama}')`
-							}}
-						/>
+					{node.panoramas.slice(0, 4).map((panorama, index) => (
+						<Link
+							to={`/node/${node.id}/panoramas/${index + 1}`}
+							className="h4 w-100 mh1 db"
+						>
+							<div
+								className="h-100 w-100 bg-center cover"
+								style={{
+									backgroundImage: `url('https://node-db.netlify.com/panoramas/${panorama}')`
+								}}
+							/>
+						</Link>
 					))}
 				</div>
 			</div>
