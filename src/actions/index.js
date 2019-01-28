@@ -34,6 +34,8 @@ export async function fetchData(dispatch) {
 		// Calculate connected nodes
 		const connectedNodes = [node.id];
 		links.forEach(link => {
+			if (!link.fromNode || !link.toNode) return;
+
 			if (link.from === parseInt(node.id, 10)) {
 				connectedNodes.push(link.to);
 				node.links = node.links || [];
