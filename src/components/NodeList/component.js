@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "../../api";
+import NodeName from "../NodeName";
 
 export default class NodeList extends PureComponent {
 	render() {
@@ -31,9 +32,7 @@ export default class NodeList extends PureComponent {
 					>
 						<div className="ph3 pointer">
 							<div className="pv3 black bb b--light-gray flex items-center">
-								<div className="h05 w05 bg-red br-pill mr2" />
-
-								<span className="fw6">Node {node.id}</span>
+								<NodeName node={node} />
 							</div>
 						</div>
 					</Link>

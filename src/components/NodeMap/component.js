@@ -19,7 +19,7 @@ const options = {
 	fullscreenControl: false,
 	streetViewControl: false,
 	zoomControlOptions: {
-		position: "9"
+		position: "1"
 	},
 	mapTypeControlOptions: {
 		position: "3"
@@ -169,19 +169,6 @@ class NodeMap extends Component {
 						defaultZoom={DEFAULT_ZOOM}
 						defaultCenter={DEFAULT_CENTER}
 						defaultOptions={options}
-						onClick={() => {
-							// TODO: Make this less hacky
-							setTimeout(() => {
-								const now = Date.now();
-								if (now - this.lastDoubleClick > 2000) {
-									history.push("/");
-								}
-							}, 500);
-						}}
-						onDblClick={() => {
-							const now = Date.now();
-							this.lastDoubleClick = now;
-						}}
 						loadingElement={<div className="h-100" />}
 						containerElement={<div className="h-100" />}
 						mapElement={<div className="h-100" />}

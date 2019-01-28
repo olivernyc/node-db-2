@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
-import { nodeStatus, statusColors } from "../utils";
+import { statusColors } from "../utils";
 
 export default class NodeStatus extends PureComponent {
 	render() {
 		const { node } = this.props;
 		if (!node) return null;
-		const status = nodeStatus(node);
+		const { status } = node;
 		const color = statusColors[status];
 		return (
 			<div

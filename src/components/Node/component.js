@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import NodeStatus from "../NodeStatus";
+import NodeName from "../NodeName";
 
 export default class Node extends PureComponent {
 	render() {
@@ -49,7 +50,9 @@ export default class Node extends PureComponent {
 			<div>
 				<div className="flex items-end">
 					<h1 className="mv0 fw7 f3 f3">
-						Node {node.id || match.params.id}
+						{node.name
+							? node.name
+							: `Node ${node.id || match.params.id}`}
 					</h1>
 					<NodeStatus node={node} />
 				</div>
@@ -62,35 +65,99 @@ export default class Node extends PureComponent {
 					</div>
 				) : null}
 
-				{node.devices ? (
-					<div>
-						<h2 className="f5 mv0">Devices</h2>
-						{node.devices.map(device => (
-							<div className="bb b--light-gray pv3">
-								<div className="flex items-center mb1">
-									<div
-										className={`h05 w05 br-pill mr2 ${
-											device.status === "active"
-												? "bg-red"
-												: "bg-gray"
-										}`}
-									/>
-									<span className="db fw5">
-										{device.device || "Unknown Device"}
-									</span>
-								</div>
-								<span className="db gray">
-									{device.width}°
-									{device.width !== 360
-										? ` ${getCardinal(device.azimuth)}`
-										: null}
-									{", "}
-									{device.radius} Miles
-								</span>
-							</div>
-						))}
+				<div className="flex pv3">
+					{this.renderDevices()}
+					{this.renderLinks()}
+				</div>
+			</div>
+		);
+	}
+
+	renderDevices() {
+		const { node } = this.props;
+		if (!node) return null;
+		const { devices = [] } = node;
+		return (
+			<div className="w-100 pr3">
+				<h2 className="f5 mv0">Devices</h2>
+				{devices.map(device => (
+					<div className="bb b--light-gray pv3">
+						<div className="flex items-center mb1">
+							<div
+								className={`h05 w05 br-pill mr2 ${
+									device.status === "active"
+										? "bg-red"
+										: "bg-gray"
+								}`}
+							/>
+							<span className="db fw5">
+								{device.device || "Unknown Device"}
+							</span>
+						</div>
+						<span className="db gray">
+							{device.width}°
+							{device.width !== 360
+								? ` ${getCardinal(device.azimuth)}`
+								: null}
+							{", "}
+							{device.radius} Miles
+						</span>
 					</div>
-				) : null}
+				))}
+			</div>
+		);
+	}
+
+	renderLinks() {
+		const { node } = this.props;
+		if (!node) return null;
+		const { links = [] } = node;
+		return (
+			<div className="w-100 pl3">
+				<h2 className="f5 mv0">Connected To</h2>
+				{links
+					.sort((linkA, linkB) => {
+						const a =
+							linkA.fromNode.id === node.id
+								? linkA.toNode
+								: linkA.fromNode;
+
+						const b =
+							linkB.fromNode.id === node.id
+								? linkB.toNode
+								: linkB.fromNode;
+
+						if (a.type === b.type) {
+							if (a.status === b.status) return 0;
+							if (a.status === "active") return -1;
+							if (b.status === "active") return 1;
+							return 0;
+						}
+
+						if (a.type === "supernode") return -1;
+						if (b.type === "supernode") return 1;
+
+						if (a.type === "hub") return -1;
+						if (b.type === "hub") return 1;
+
+						if (a.type === "active") return -1;
+						if (b.type === "active") return 1;
+
+						return 0;
+					})
+					.map(link => {
+						const otherNode =
+							link.fromNode.id === node.id
+								? link.toNode
+								: link.fromNode;
+						return (
+							<Link to={`/node/${otherNode.id}`} className="link">
+								<div className="bb b--light-gray pv3 black">
+									<NodeName node={otherNode} />
+								</div>
+							</Link>
+						);
+					})}
 			</div>
 		);
 	}
