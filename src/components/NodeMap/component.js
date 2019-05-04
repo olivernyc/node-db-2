@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
-import { withRouter, Route } from "react-router";
+import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import { uniq, isEqual } from "lodash";
 

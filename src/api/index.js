@@ -33,7 +33,7 @@ export async function authenticate(token) {
 
 export async function writeNodesApi(node, nodeFile) {
   console.log(node, nodeFile);
-  const result = await octokit.repos.updateFile({
+  await octokit.repos.updateFile({
     owner: OWNER,
     repo: REPO,
     path: `data/nodes/${node.id}.json`,

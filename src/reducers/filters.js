@@ -1,4 +1,4 @@
-import { ERROR, TOGGLE_FILTER, TOGGLE_FILTERS} from "../actions";
+import { TOGGLE_FILTER, TOGGLE_FILTERS} from "../actions";
 
 const initialFilters = {
 	linkNYC: false,

@@ -74,7 +74,7 @@ export async function fetchData(dispatch) {
 
 export async function writeNode(nodes, dispatch) {
 	try {
-		const res = await writeNodesApi(nodes);
+		await writeNodesApi(nodes);
 		dispatch({ type: WRITE_NODES_SUCCESS, nodes });
 	} catch (error) {
 		if (error.status === 401) {
