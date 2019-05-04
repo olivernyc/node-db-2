@@ -12,7 +12,7 @@ export default class Filters extends PureComponent {
 		const { showFilters } = this.props;
 		if (!showFilters) return null;
 		return (
-			<div className="bg-white f5 shadow-2">
+			<div className="">
 				<div role="group" className="dib pa2">
 					<div>{labels.map(label => this.renderFilter(label))}</div>
 				</div>
