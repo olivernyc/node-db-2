@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 	nodesById: state.nodes,
 	links: state.links,
 	kiosks: state.kiosks,
-	filters: state.filters
+	filters: state.filters.filters,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

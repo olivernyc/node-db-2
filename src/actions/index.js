@@ -6,6 +6,21 @@ export const WRITE_NODES_SUCCESS = "WRITE_NODES_SUCCESS";
 export const TOKEN_SUCCESS = "TOKEN_SUCCESS";
 export const CLEAR_TOKEN = "CLEAR_TOKEN";
 export const ERROR = "ERROR";
+export const TOGGLE_FILTER = "TOGGLE_FILTER";
+export const TOGGLE_FILTERS = "TOGGLE_FILTERS";
+
+function getCounts(nodes) {
+	const counts = {};
+	nodes.forEach(node => {
+		const { type } = node;
+		counts[type] = (counts[type] || 0) + 1;
+
+		if (type.indexOf("potential-") > -1 || type === "dead") {
+			counts["potential"] = (counts["potential"] || 0) + 1;
+		}
+	});
+	return counts;
+}
 
 export async function fetchData(dispatch) {
 	const nodes = await fetchNodesApi();
@@ -51,8 +66,11 @@ export async function fetchData(dispatch) {
 		node.connectedNodes = connectedNodes;
 	});
 
-	dispatch({ type: FETCH_DATA_SUCCESS, nodes, links });
+	const counts = getCounts(nodes);
+
+	dispatch({ type: FETCH_DATA_SUCCESS, nodes, links, counts });
 }
+
 
 export async function writeNode(nodes, dispatch) {
 	try {
@@ -68,4 +86,12 @@ export async function writeNode(nodes, dispatch) {
 
 export function setToken(token, dispatch) {
 	dispatch({ type: TOKEN_SUCCESS, token });
+}
+
+export function toggleFilter(label, dispatch) {
+	dispatch({ type: TOGGLE_FILTER, label });
+}
+
+export function toggleFilters(dispatch) {
+	dispatch({ type: TOGGLE_FILTERS });
 }

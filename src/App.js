@@ -37,7 +37,6 @@ export default class App extends PureComponent {
 								<div className="sans-serif">
 									<Alert />
 									<Route path="/" component={Nav} />
-									<Route path="/" component={Filters} />
 									<div className="flex">
 										<Route
 											exact
