@@ -2,11 +2,13 @@ import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "../../api";
 import NodeName from "../NodeName";
+import Filters from "../Filters";
 
 export default class NodeList extends PureComponent {
 	render() {
 		return (
 			<div className="mw5-5 w-100 pv2">
+				<Filters />
 				{this.renderList()}
 				{this.renderEmpty()}
 			</div>

@@ -58,12 +58,6 @@ export default class Node extends PureComponent {
 	renderLog() {
 		const { node } = this.props;
 		if (!node) return null;
-		const { links } = node;
-		const firstLinkNode = links
-			? links[0].toNode.id === node.id
-				? links[0].fromNode
-				: links[0].toNode
-			: null;
 		return (
 			<div className="mt3 bb b--light-gray bg-white br2 shadow">
 				<div className="pa3">
@@ -90,7 +84,7 @@ export default class Node extends PureComponent {
 								)
 								.map(connectedNode => (
 									<div className="pa3 bt b--light-gray flex items-start">
-										<span className="mr2 mt1 f7">🔗</span>
+										<span className="mr2 mt1 f7" role="img" aria-label="locked">🔗</span>
 										<div>
 											<span className="db f6 mb1">
 												Connected to{" "}
@@ -121,7 +115,7 @@ export default class Node extends PureComponent {
 						: null}
 
 					<div className="pa3 bt b--light-gray flex items-start">
-						<span className="mr2 mt1 f7">🎉</span>
+						<span className="mr2 mt1 f7" role="img" aria-label="cheers emoji">🎉</span>
 						<div>
 							<span className="db f6 mb1">Joined</span>
 							<span className="db f7 gray">
@@ -289,9 +283,8 @@ export default class Node extends PureComponent {
 	}
 
 	renderPhotos() {
-		const { node, match } = this.props;
+		const { node } = this.props;
 		if (!node) return null;
-		const { panoramas = [] } = node;
 		return (
 			<div className="mv3 bg-white br2 shadow">
 				<div className="pa3 flex items-center justify-between bb b--light-gray pv3">
